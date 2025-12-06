@@ -2,35 +2,186 @@
 <html lang="en" prefix="og: http://ogp.me/ns#">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Badminton Bot Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <title>Badminton Bot Manager | Loading...</title>
 
-    <!-- 1. STANDARD TAGS -->
+    <!-- 1. MOBILE & PWA OPTIMIZATIONS -->
+    <!-- THEME COLOR: White to match new background -->
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Favicon & App Icon -->
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dzknr0qxv/image/upload/v1765005683/Bot_kofvjy.png">
+    <link rel="apple-touch-icon" href="https://res.cloudinary.com/dzknr0qxv/image/upload/v1765005683/Bot_kofvjy.png">
+
+    <!-- 2. SOCIAL MEDIA TAGS -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Badminton Bot">
     <meta property="og:title" content="Badminton Bot Manager">
     <meta property="og:description" content="Automate your badminton court bookings. Manage slots and configurations.">
     <meta property="og:url" content="https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec">
-    
-    <!-- 2. IMAGE OPTIMIZATION (Updated URL) -->
     <meta property="og:image" content="https://res.cloudinary.com/dzknr0qxv/image/upload/v1765005683/Bot_kofvjy.png">
     <meta property="og:image:secure_url" content="https://res.cloudinary.com/dzknr0qxv/image/upload/v1765005683/Bot_kofvjy.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:alt" content="Badminton Bot Icon">
-
-    <!-- 3. TWITTER CARDS -->
+    
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Badminton Bot Manager">
     <meta name="twitter:description" content="Automate your badminton court bookings.">
     <meta name="twitter:image" content="https://res.cloudinary.com/dzknr0qxv/image/upload/v1765005683/Bot_kofvjy.png">
 
+    <!-- Import Poppins Font to match App -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 3. STYLING -->
+    <style>
+        :root {
+            /* Colors extracted from App code */
+            --bg-color: #ffffff;  /* White Background */
+            --primary: #3b82f6;   /* Blue */
+            --text-main: #1e293b; /* Dark Slate (App text color) */
+            --text-sub: #64748b;  /* Slate 500 (App subtext color) */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            
+            /* Full height handling */
+            height: 100vh;
+            height: 100dvh; 
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            overflow: hidden;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* EXACT MATCH: App .dashboard uses max-width 480px */
+            max-width: 480px;
+            width: 100%;
+            /* EXACT MATCH: App .header uses padding 25px 20px */
+            padding: 25px 20px; 
+        }
+
+        /* Shuttlecock Styling */
+        .shuttlecock {
+            width: 80px; 
+            height: 80px;
+            fill: var(--primary); 
+            animation: bounce 1.2s infinite alternate cubic-bezier(0.5, 0.05, 1, 0.5);
+            /* Softer shadow for white background */
+            filter: drop-shadow(0 4px 6px rgba(59, 130, 246, 0.2));
+            margin-bottom: 5px; 
+        }
+        
+        .shadow {
+            width: 50px;
+            height: 8px;
+            /* Lighter shadow for white background */
+            background: rgba(0,0,0,0.1);
+            border-radius: 50%;
+            margin-bottom: 20px;
+            animation: shrink 1.2s infinite alternate cubic-bezier(0.5, 0.05, 1, 0.5);
+        }
+
+        /* Typography */
+        h1 {
+            margin: 0 0 8px 0; 
+            font-size: 22px; 
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            color: var(--text-main);
+        }
+
+        p {
+            font-size: 13px; 
+            color: var(--text-sub);
+            margin: 0;
+            max-width: 90%;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .manual-link {
+            margin-top: 25px;
+            font-size: 11px; 
+            color: var(--text-sub);
+            opacity: 0.8;
+            padding: 10px;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        
+        a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-25px) rotate(8deg); }
+        }
+
+        @keyframes shrink {
+            0% { transform: scale(1); opacity: 0.4; }
+            100% { transform: scale(0.6); opacity: 0.1; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .shuttlecock, .shadow {
+                animation: none;
+            }
+        }
+    </style>
+
     <!-- 4. REDIRECT LOGIC -->
-    <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec">
+    <meta http-equiv="refresh" content="3; url=https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec">
 </head>
 <body>
-    <p>Redirecting to Badminton Bot...</p>
+
+    <div class="loader-container">
+        <!-- SVG Icon: Shuttlecock -->
+        <svg class="shuttlecock" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C10.9 2 10 2.9 10 4V7H14V4C14 2.9 13.1 2 12 2ZM8.5 8L6 18H18L15.5 8H8.5ZM7 19C7 20.1 7.9 21 9 21H15C16.1 21 17 20.1 17 19H7Z"/>
+        </svg>
+
+        <div class="shadow"></div>
+
+        <h1>Badminton Bot</h1>
+        <p>Loading configuration...</p>
+
+        <div class="manual-link">
+            Taking too long? <a href="https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec">Enter Court</a>
+        </div>
+    </div>
+
     <script>
-        window.location.replace("https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec");
+        // Use replace() to keep history clean
+        setTimeout(function() {
+            window.location.replace("https://script.google.com/macros/s/AKfycbxLRXpHzQEsQwse7VGby_Ue3VIAifNS_xIWjA_hkiVx3ysbKq8J6LQt5iRSitrmJxxj/exec");
+        }, 1500);
     </script>
 </body>
 </html>
